@@ -23,12 +23,14 @@ app.get('/',(req,res)=>{
     return res.json({"hello":"world"});
 })
 
-const start=async()=>{
-    mongoose.connect(process.env.MONGO_URI);
-    console.log(`Database connected successfully: ${connectionDb.connection.host}`) ;
-    server.listen(app.get("port"),()=>{
+const start = async () => {
+    const connectionDb = await mongoose.connect(process.env.MONGO_URI);
+
+    console.log(`Database connected successfully: ${connectionDb.connection.host}`);
+
+    server.listen(app.get("port"), () => {
         console.log("Server is running on port 8000");
-    }); 
+    });
 }
 
 start();

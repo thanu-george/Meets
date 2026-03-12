@@ -13,25 +13,26 @@ import Snackbar from "@mui/material/Snackbar";
 
 import { useAuth } from "../context/AuthContext";
 import axios from 'axios';
+import type { JSX } from 'react/jsx-runtime';
 
 
 
 const defaultTheme = createTheme();
 
-export default function Authentication() {
-    const [username, setUsername] = React.useState('');
-    const [password, setPassword] = React.useState('');
-    const [name, setName] = React.useState('');
-    const [error, setError] = React.useState('');
-    const [message, setMessage] = React.useState('');
-    
-    const [formState, setFormState] = React.useState(0);
-    const [open, setOpen] = React.useState(false);
-  
-    const { handleRegister, handleLogin } = useAuth();
-    
+export default function Authentication(): JSX.Element {
 
-    let handleAuth = async () => {
+  const [username, setUsername] = React.useState<string>('');
+  const [password, setPassword] = React.useState<string>('');
+  const [name, setName] = React.useState<string>('');
+  const [error, setError] = React.useState<string>('');
+  const [message, setMessage] = React.useState<string>('');
+
+  const [formState, setFormState] = React.useState<number>(0);
+  const [open, setOpen] = React.useState<boolean>(false);
+
+  const { handleRegister, handleLogin } = useAuth();
+
+    const handleAuth = async (): Promise<void> => {
       try {
         if(formState === 0){
           const result = await handleLogin(username, password);
