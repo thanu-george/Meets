@@ -3,10 +3,11 @@ import { createServer } from 'node:http';
 import {connectToSocket} from './controllers/socketManager.js';
 import mongoose from 'mongoose';
 import cors from 'cors';
+import userRoutes from './routes/user.routes.js';
+
+
 import dotenv from "dotenv";
 dotenv.config();
-
-import userRoutes from './routes/user.routes.js';
 
 const app=express();
 const server=createServer(app); 
